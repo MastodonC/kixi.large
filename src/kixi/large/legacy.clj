@@ -1,3 +1,4 @@
+;; this is just a copy of the docjure namespace
 (ns kixi.large.legacy
   (:import
    (java.io FileOutputStream FileInputStream InputStream OutputStream)

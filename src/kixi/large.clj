@@ -58,3 +58,6 @@
     (doseq [s sheet-specs]
       (add-sheet! workbook s))
     workbook))
+
+(defn save-workbook! [wb file-name]
+  (ll/save-workbook! file-name wb))

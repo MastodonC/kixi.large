@@ -2,6 +2,7 @@
 (ns kixi.large.legacy
   (:import
    (java.io FileOutputStream FileInputStream InputStream OutputStream)
+   (java.time LocalDate)
    (java.util Date Calendar)
    (org.apache.poi.xssf.usermodel XSSFWorkbook)
    (org.apache.poi.hssf.usermodel HSSFWorkbook)
@@ -253,6 +254,12 @@
   (if (= (.getCellType cell) CellType/FORMULA) (.setCellType cell CellType/NUMERIC))
   (.setCellValue cell ^Date val)
   (.setCellStyle cell (create-date-format (.. cell getSheet getWorkbook) "m/d/yy")))
+
+(defmethod set-cell! LocalDate [^Cell cell val]
+  (if (= (.getCellType cell) CellType/FORMULA) (.setCellType cell CellType/NUMERIC))
+  (.setCellValue cell ^LocalDate val)
+  (.setCellStyle cell (create-date-format (.. cell getSheet getWorkbook) "m/d/yy")))
+
 
 (defmethod set-cell! nil [^Cell cell val]
   (let [^String null nil]
